@@ -12,7 +12,25 @@
  *   },
  */
 
+require('babel-register')({
+  ignore: /node_modules\/(?!testUtils.js|openzeppelin-solidity)/,
+  presets: [
+    ['env', {
+      targets : {
+        node : '8.0'
+      }
+    }]
+  ],
+  retainLines: true
+});
+require('babel-polyfill');
+
 module.exports = {
-  // See <http://truffleframework.com/docs/advanced/configuration>
-  // to customize your Truffle configuration!
-};
+  networks: {
+     development: {
+        host: 'localhost',
+        port: 8545, 
+        network_id: '*'
+     }
+  }
+}
